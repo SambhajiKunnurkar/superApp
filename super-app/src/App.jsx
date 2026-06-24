@@ -1,19 +1,21 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+
 import './App.css'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './routes/AppRoutes'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
-    <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center">
-      <h1 className="text-[#39ff14] text-4xl font-extrabold tracking-widest">
-        Super App 🎬
-      </h1>
-    </div>
+
+
+
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+    
       
     </>
   )
