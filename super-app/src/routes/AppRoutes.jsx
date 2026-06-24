@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import Register from "../pages/Register";
+
 
 /* ── placeholder screens so every route renders something ── */
 const Soon = ({ label }) => (
@@ -12,7 +14,7 @@ const Soon = ({ label }) => (
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/"            element={<Soon label="Register" />} />
+      <Route path="/"            element={<Register />} />
       <Route path="/categories"  element={<Soon label="Categories" />} />
       <Route path="/dashboard"   element={<Soon label="Dashboard" />} />
       <Route path="/movies"      element={<Soon label="Movies" />} />
