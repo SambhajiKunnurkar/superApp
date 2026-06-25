@@ -11,15 +11,20 @@ const Register = () => {
   const [agreed, setAgreed]     = useState(false);
   const [agreeErr, setAgreeErr] = useState("");
 
+  const nameRx  = /^[a-zA-Z\s]+$/;
   const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRx = /^\d{10}$/;
 
   const validate = () => {
     const e = {};
-    if (!formData.name.trim())                             e.name     = "Field is required";
-    if (!formData.username.trim() || /\s/.test(formData.username)) e.username = "Field is required";
-    if (!emailRx.test(formData.email))            e.email    = "Field is required";
-    if (!phoneRx.test(formData.mobile))           e.mobile   = "Field is required";
+    if (!formData.name.trim() || !nameRx.test(formData.name.trim()))
+      e.name = "Name is required (alphabets only).";
+    if (!formData.username.trim() || /\s/.test(formData.username))
+      e.username = "Username is required (no spaces allowed).";
+    if (!emailRx.test(formData.email))
+      e.email = "Please enter a valid email address.";
+    if (!phoneRx.test(formData.mobile))
+      e.mobile = "Mobile must be exactly 10 digits.";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
