@@ -1,4 +1,4 @@
-
+// ── per-category Unsplash images ──────────────────────────────────────────
 const IMAGES = {
   Action:   "https://images.unsplash.com/photo-1547153760-18fc86324498?w=400&q=75",
   Drama:    "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&q=75",
@@ -11,56 +11,28 @@ const IMAGES = {
   Fiction:  "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=400&q=75",
 };
 
-
-const BADGE_BG = {
-  Action:   "bg-[#ff6b00]",
-  Drama:    "bg-[#ff006e]",
-  Romance:  "bg-[#39ff14]",
-  Thriller: "bg-[#7b2fff]",
-  Western:  "bg-[#ffd700]",
-  Horror:   "bg-[#9b59b6]",
-  Fantasy:  "bg-[#00b4ff]",
-  Music:    "bg-[#ff4757]",
-  Fiction:  "bg-[#2ed573]",
+const CARD_BG = {
+  Action:   "bg-[#ff4e00]",
+  Drama:    "bg-[#d7a4ff]",
+  Romance:  "bg-[#14a8ff]",
+  Thriller: "bg-[#74c2ff]",
+  Western:  "bg-[#a62e00]",
+  Horror:   "bg-[#7358ff]",
+  Fantasy:  "bg-[#ff4ee3]",
+  Music:    "bg-[#e11d48]",
+  Fiction:  "bg-[#6ee7b7]",
 };
-
-
-const BADGE_TEXT = {
-  Action:   "text-black",
-  Drama:    "text-white",
-  Romance:  "text-black",
-  Thriller: "text-white",
-  Western:  "text-black",
-  Horror:   "text-white",
-  Fantasy:  "text-black",
-  Music:    "text-white",
-  Fiction:  "text-black",
-};
-
 
 const BORDER = {
-  Action:   "border-[#ff6b00]",
-  Drama:    "border-[#ff006e]",
-  Romance:  "border-[#39ff14]",
-  Thriller: "border-[#7b2fff]",
-  Western:  "border-[#ffd700]",
-  Horror:   "border-[#9b59b6]",
-  Fantasy:  "border-[#00b4ff]",
-  Music:    "border-[#ff4757]",
-  Fiction:  "border-[#2ed573]",
-};
-
-
-const CHECK_BG = {
-  Action:   "bg-[#ff6b00]",
-  Drama:    "bg-[#ff006e]",
-  Romance:  "bg-[#39ff14]",
-  Thriller: "bg-[#7b2fff]",
-  Western:  "bg-[#ffd700]",
-  Horror:   "bg-[#9b59b6]",
-  Fantasy:  "bg-[#00b4ff]",
-  Music:    "bg-[#ff4757]",
-  Fiction:  "bg-[#2ed573]",
+  Action:   "border-[#14a800]",
+  Drama:    "border-[#14a800]",
+  Romance:  "border-[#14a800]",
+  Thriller: "border-[#14a800]",
+  Western:  "border-[#14a800]",
+  Horror:   "border-[#14a800]",
+  Fantasy:  "border-[#14a800]",
+  Music:    "border-[#14a800]",
+  Fiction:  "border-[#14a800]",
 };
 
 const CategoryCard = ({ category, isSelected, onToggle }) => {
@@ -68,66 +40,25 @@ const CategoryCard = ({ category, isSelected, onToggle }) => {
     <div
       onClick={() => onToggle(category)}
       className={`
-        relative rounded-xl overflow-hidden cursor-pointer
-        border-2 transition-all duration-200
-        aspect-square
-        ${isSelected
-          ? `${BORDER[category]} scale-[1.02] shadow-lg`
-          : "border-transparent"
-        }
-        hover:scale-[1.04]
+        relative rounded-2xl p-4 flex flex-col justify-between cursor-pointer
+        border-[4px] transition-all duration-200 h-full w-full box-border select-none
+        ${CARD_BG[category]}
+        ${isSelected ? `${BORDER[category]}` : "border-transparent"}
       `}
     >
-      {/* ── background image ── */}
-      <img
-        src={IMAGES[category]}
-        alt={category}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {/* Category Text Title */}
+      <h3 className="text-white text-[22px] font-bold tracking-wide leading-tight">
+        {category}
+      </h3>
 
-      {/* ── subtle dark overlay so badge is always readable ── */}
-      <div className="absolute inset-0 bg-black/20" />
-
-      {/* ── coloured label badge — top-left, matches Figma ── */}
-      <div className="absolute top-2 left-2 z-10">
-        <span
-          className={`
-            ${BADGE_BG[category]} ${BADGE_TEXT[category]}
-            text-[11px] font-bold px-2.5 py-[3px] rounded-[3px]
-            leading-none
-          `}
-        >
-          {category}
-        </span>
+      {/* Internal Image container — scales automatically based on remaining row space */}
+      <div className="w-full flex-1 min-h-0 rounded-xl overflow-hidden mt-3">
+        <img
+          src={IMAGES[category]}
+          alt={category}
+          className="w-full h-full object-cover"
+        />
       </div>
-
-      {/* ── checkmark bubble — top-right, only when selected ── */}
-      {isSelected && (
-        <div
-          className={`
-            absolute top-2 right-2 z-10
-            ${CHECK_BG[category]}
-            w-[22px] h-[22px] rounded-full
-            flex items-center justify-center
-            shadow-md
-          `}
-        >
-          <svg
-            width="11" height="9"
-            viewBox="0 0 11 9"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 4L4 7L10 1"
-              stroke="black"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      )}
     </div>
   );
 };

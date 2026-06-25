@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Register from "../pages/Register";
-import CategoryCard from "../components/CategoryCard";
 
+import Categories from "../pages/Categories";
 
 /* ── placeholder screens so every route renders something ── */
 const Soon = ({ label }) => (
@@ -16,14 +16,8 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/"            element={<Register />} />
-      {/* <Route path="/categories"  element={<Soon label="Categories" />} /> */}
-      <Route path="/categories" element={
-  <div className="min-h-screen bg-[#111120] p-8 grid grid-cols-3 gap-4 max-w-lg mx-auto">
-    {["Action","Drama","Romance","Thriller","Western","Horror"].map(c => (
-      <CategoryCard key={c} category={c} isSelected={c === "Action"} onToggle={() => {}} />
-    ))}
-  </div>
-} />
+      
+      <Route path="/categories" element={<Categories />} />
       <Route path="/dashboard"   element={<Soon label="Dashboard" />} />
       <Route path="/movies"      element={<Soon label="Movies" />} />
     </Routes>
